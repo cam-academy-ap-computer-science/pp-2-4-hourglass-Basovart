@@ -6,22 +6,20 @@ PSEUDOCODE FOR HOURGLASS
 2.Draw top half
 	have nested for loops 
 		one for loop to create the spaces
-		the other for loop to draw the hour glass 
-			one to create the spaces
-			the other to draw the :
+		the other for loop to draw the :, / and \
 3.Draw bottom half
 	the same as top half but in reverse
 4.Draw solid line
 	use the previous drawLine for loop
-
-
+	
+	FOR THE SCALE:
+	To change scale, change what SIZE equals at the beginning of code from
+	4 to however tall you want the hour glass to be.   
 */
 
 	
 public class Hourglass {
-	//class constant
 	public static final int SIZE = 4;
-	
 	//calls methods necessary to print the hour glass
 	public static void main(String[] args) {
 		drawLine();
@@ -34,8 +32,7 @@ public class Hourglass {
 	//prints the line seen on the top and bottom of the hour glass
 	public static void drawLine() {
 		System.out.print("|");
-		//prints the " 10 times
-		for (int i = 1; i <= (2 * SIZE); i++) {
+		for(int x = 1; x <= 2 * SIZE + 2; x++) {
 			System.out.print("\"");
 		}
 		System.out.println("|");
@@ -43,15 +40,12 @@ public class Hourglass {
 	
 	//prints the top half of hour glass
 	public static void topHalf() {
-		//prints the spaces to move \ in the correct positions
-		for (int line = 1; line <= SIZE; line++) {
-			for (int i = 1; i <= line; i++) {
+		for (int i = 1; i <= SIZE; i++) {
+			for (int j = 1; j <= i; j++) {
 				System.out.print(" ");
 			}
 			System.out.print("\\");
-			//prints the : in descending order from 8 to 2
-			int semi = 2 * SIZE - 2 * line;
-			for (int j = 1; j <= semi; j++) {
+			for (int dots = (2 * SIZE + 2) - (2 * i); dots>=1; dots--) {
 				System.out.print(":");
 			}
 			System.out.print("/");
@@ -62,14 +56,12 @@ public class Hourglass {
 	
 	//prints the bottom half of the hour glass, reverse of top half
 	public static void bottomHalf() {
-		//prints the spaces needed
-		for (int line = 1; line <= SIZE; line++) {
-			for (int i = 1; i <= (SIZE - line); i++) {
+		for (int i = SIZE; i >= 1; i--) {
+			for (int j = 1; j<= i; j++) {
 				System.out.print(" ");
 			}
 			System.out.print("/");
-			//prints : in ascending order from 2 to 8
-			for (int i = 1; i<= 2 * (line - 1); i++) {
+			for (int dots = (2 * SIZE +2) - (2 * i); dots>=1; dots--) {
 				System.out.print(":");
 			}
 			System.out.print("\\");
@@ -79,6 +71,10 @@ public class Hourglass {
 	
 	//prints the middle divider
 	public static void middle() {
-		System.out.println("     ||");
+		for(int space = 1; space <= SIZE + 1; space++) {
+			System.out.print(" ");
+		}
+		System.out.println("||");
+
 	}
 }
