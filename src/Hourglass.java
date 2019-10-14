@@ -6,7 +6,9 @@ PSEUDOCODE FOR HOURGLASS
 2.Draw top half
 	have nested for loops 
 		one for loop to create the spaces
-		the other for loop to draw the :, / and \
+		the other for loop to draw the hour glass 
+			one to create the spaces
+			the other to draw the :
 3.Draw bottom half
 	the same as top half but in reverse
 4.Draw solid line
@@ -17,6 +19,8 @@ PSEUDOCODE FOR HOURGLASS
 
 	
 public class Hourglass {
+	//class constant
+	public static final int SIZE = 4;
 	
 	//calls methods necessary to print the hour glass
 	public static void main(String[] args) {
@@ -30,7 +34,8 @@ public class Hourglass {
 	//prints the line seen on the top and bottom of the hour glass
 	public static void drawLine() {
 		System.out.print("|");
-		for (int i = 1; i <= 10; i++) {
+		//prints the " 10 times
+		for (int i = 1; i <= (2 * SIZE); i++) {
 			System.out.print("\"");
 		}
 		System.out.println("|");
@@ -38,12 +43,15 @@ public class Hourglass {
 	
 	//prints the top half of hour glass
 	public static void topHalf() {
-		for (int i = 1; i <= 4; i++) {
-			for (int j = 1; j <= i; j++) {
+		//prints the spaces to move \ in the correct positions
+		for (int line = 1; line <= SIZE; line++) {
+			for (int i = 1; i <= line; i++) {
 				System.out.print(" ");
 			}
 			System.out.print("\\");
-			for (int j = 10-i*2; j>=1; j--) {
+			//prints the : in descending order from 8 to 2
+			int semi = 2 * SIZE - 2 * line;
+			for (int j = 1; j <= semi; j++) {
 				System.out.print(":");
 			}
 			System.out.print("/");
@@ -54,12 +62,14 @@ public class Hourglass {
 	
 	//prints the bottom half of the hour glass, reverse of top half
 	public static void bottomHalf() {
-		for (int i = 4; i >= 1; i--) {
-			for (int j = 1; j<= i; j++) {
+		//prints the spaces needed
+		for (int line = 1; line <= SIZE; line++) {
+			for (int i = 1; i <= (SIZE - line); i++) {
 				System.out.print(" ");
 			}
 			System.out.print("/");
-			for (int j = 10-i*2; j>=1; j--) {
+			//prints : in ascending order from 2 to 8
+			for (int i = 1; i<= 2 * (line - 1); i++) {
 				System.out.print(":");
 			}
 			System.out.print("\\");
